@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>anima9.github.io by anima9</title>
+    <script> 
+    $(function(){
+      $("#nav_bar").load("nav-bar.html"); 
+    });
+    </script>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>anima9.github.io</h1>
+          <h2>momento</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/anima9" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+    <div id="nav_bar">   
+        
+<!--includes nav-bar.html here using jquery-->
+    
+    </div><!-- nav bar div --> 
+          
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="-welcome-to-github-pages" class="anchor" href="#-welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>AWS EC2 Setup + node.js</h1>
+
+<div id="my_contents">
+    <h2>Create Amazon Web Services(AWS) EC2 instance</h2>
+    <h3>General Outline</h3>
+        <ul>
+            <li>Sign-up for free AWS account</li>
+            <li>Follow guidelines (Steps 1 to 5) <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html" target="_blank"> here</a>                 </li>
+            <li>Follow steps(1-3) <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html" target="_blank"> here</a></li>
+            <li>Open command line tool and connect to your instance</li>
+            <li>Create filesystems on new device and mount it</li>
+            <li>Install node.js and mongodb</li>
+            <li>Configure system to save data to new EBS</li>
+        </ul>
+    
+<h3>Installing node.js</h3>
+    <p>If you have followed general outlines up to step 3, then you should have your terminal open.  If you haven't please do so now.</p>       
+
+    <p>Next steps are from Kostas MAVROPALIAS blog (link at the bottom).  Getting packages necessary for compiling node.js and clone from git.  In terminal:</p><br>
+    <pre><code>
+        sudo yum install gcc-c++ make
+        sudo yum install openssl-devel
+        sudo yum install git
+        git clone git://github.com/joyent/node.git
+        cd node
+    </code></pre><br>
+    <p>After installing node.js we are installing <a href="http://expressjs.com/" target="_blank">Express</a> for web framework.  As of today, Jan 16, 2015, most current and stable version of node.js was v0.10.9.  <span id="side_note"> <h3>Side Note</h3><br>Type 'git tag -l' to see list of all versions. If there are later versions just replace the version number following 'checkout' command.  Node.js follows versioning schema of "even numbers are stable". So, v0.10.x are stable not v0.11.x </span>In terminal:</p><br>
+    <pre><code>
+        git checkout v0.10.9
+        ./configure
+        make
+        sudo make install
+    </code></pre><br>
+    <p>If your are familiar with Vi text editor:</p>
+    <pre><code>
+        sudo vi /etc/sudoers
+        #find the line that has:
+        #Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+        #and add at the end. After '/urs/bin'
+            :/usr/local/bin
+    </code></pre>
+    <p>If not use nano text editor.</p>
+    <pre><code>
+        sudo nano /etc/sudoers
+        #it should open up text editor within terminal
+        #use arrow keys to navigate to line that has:
+        Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+        #and add the follwoing at the end of the line after "/usr/bin"
+            :/usr/local/bin
+        #hit control x (to save and exit)
+        #overwrite? yes
+        #file name sudoers? enter
+    </code></pre>
+    <p>Next we need to install node package manager NPM.</p><br>
+    <pre><code>
+        git clone https://github.com/isaacs/npm.git
+        cd npm
+        sudo make install
+    </code></pre>
+    <p>If it gives you an error at "sudo make install" try again to force install.  Or try using sudo make install -g</p><br>
+    
+    <p> And that's it for installing node.js and npm.  However, you still need to install Express and mongoDB on EBS volume.</p><br>
+    <p>Click <a href="AWS-setup2.html">here</a>for next step.</p>
+    <p>Sources from: <br>
+    <a href="http://iconof.com/blog/how-to-install-setup-node-js-on-amazon-aws-ec2-complete-guide/" target="_blank">KOSTAS MAVROPALIAS's blog</a>
+    </p>
+</div> <!--my contents-->
+
+
+          </section>
+        </div>
+      </div>
+    </body>
+</html>
