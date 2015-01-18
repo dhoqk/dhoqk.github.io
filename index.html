@@ -36,7 +36,7 @@ image:
   </header>
       
   <div class="entry-content">     
-<!--setup for excerpt: At home page, it shows posts only upto where <more> is written.-->      
+<!--setup for excerpt: At home page, it shows posts only upto where <!---more-> is written.-->      
     {% if post.content contains '<!--more-->' %}
 	   {{ post.content | split:'<!--more-->' | first }}
 	       <p><a href="{{ post.url }}">more...</a></p>
